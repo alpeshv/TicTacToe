@@ -42,10 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IDisplayHelper.cs" />
+    <Compile Include="Abstract\IGameBoard.cs" />
+    <Compile Include="Abstract\IPauseHelper.cs" />
+    <Compile Include="Abstract\IRandomNumberGenerator.cs" />
+    <Compile Include="Abstract\ITicTacToeGame.cs" />
+    <Compile Include="DisplayHelper.cs" />
     <Compile Include="GameBoard.cs" />
+    <Compile Include="TicTacToeGameController.cs" />
+    <Compile Include="PauseHelper.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomNumberGenerator.cs" />
+    <Compile Include="TicTacToeGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
