@@ -67,7 +67,7 @@ namespace FMP.TicTacToe
             if (Winner == null)
                 _displayHelper.Display("Game Over. No Winner.");
             else
-                _displayHelper.Display(String.Format("Game Over. Winner is Player {0}.", Winner.PlayCharacter));
+                _displayHelper.Display(String.Format("Game Over. The winner is Player {0}.", Winner.PlayCharacter));
         }
     }
 }

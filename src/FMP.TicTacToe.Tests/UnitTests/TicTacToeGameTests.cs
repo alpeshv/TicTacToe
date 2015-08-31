@@ -170,7 +170,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
 
             _game.DisplayResult();
 
-            _displayHelperMock.Verify(m => m.Display("Game Over. Winner is Player O."), Times.Once);
+            _displayHelperMock.Verify(m => m.Display("Game Over. The winner is Player O."), Times.Once);
         }
 
         [Test]
@@ -180,7 +180,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
 
             _game.DisplayResult();
 
-            _displayHelperMock.Verify(m => m.Display("Game Over. Winner is Player X."), Times.Once);
+            _displayHelperMock.Verify(m => m.Display("Game Over. The winner is Player X."), Times.Once);
         }
     }
 }
