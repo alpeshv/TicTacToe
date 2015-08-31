@@ -8,9 +8,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
     {
         private const string DisplayFormat = "\n{0}|{1}|{2}\n_ _ _\n{3}|{4}|{5}\n_ _ _\n{6}|{7}|{8}";
         private char[,] _boardArray;
-        private readonly Player _playerO = new Player('O');
-        private readonly Player _playerX = new Player('X');
-
+        
         [SetUp]
         public void SetUp()
         {
@@ -78,7 +76,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
         {
             var gameBoard = new GameBoard(_boardArray);
 
-            gameBoard.Play(_playerO, 2, 2);
+            gameBoard.Play('O', 2, 2);
 
             AssertGameBoardStatus(gameBoard, ' ', ' ', ' ', ' ', 'O', ' ', ' ', ' ', ' ');
         }
@@ -88,7 +86,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
         {
             var gameBoard = new GameBoard(_boardArray);
 
-            gameBoard.Play(_playerX, 1, 3);
+            gameBoard.Play('X', 1, 3);
 
             AssertGameBoardStatus(gameBoard, ' ', ' ', 'X', ' ', ' ', ' ', ' ', ' ', ' ');
         }
@@ -98,7 +96,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
         {
             var gameBoard = new GameBoard(_boardArray);
 
-            var result = gameBoard.Play(_playerO, 2, 2);
+            var result = gameBoard.Play('O', 2, 2);
 
             Assert.That(result, Is.True);
         }
@@ -109,7 +107,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
             _boardArray[1, 1] = 'X';
             var gameBoard = new GameBoard(_boardArray);
 
-            gameBoard.Play(_playerO, 2, 2);
+            gameBoard.Play('O', 2, 2);
 
             AssertGameBoardStatus(gameBoard, ' ', ' ', ' ', ' ', 'X', ' ', ' ', ' ', ' ');
         }
@@ -120,7 +118,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
             _boardArray[1, 1] = 'X';
             var gameBoard = new GameBoard(_boardArray);
 
-            var result = gameBoard.Play(_playerO, 2, 2);
+            var result = gameBoard.Play('O', 2, 2);
 
             Assert.That(result, Is.False);
         }

@@ -38,11 +38,11 @@ namespace FMP.TicTacToe
                 GameBoardValues[2, 2]);
         }
 
-        public bool Play(Player player, int x, int y)
+        public bool Play(char ch, int x, int y)
         {
             if (GameBoardValues[x - 1, y - 1] == ' ')
             {
-                GameBoardValues[x - 1, y - 1] = player.PlayCharacter;
+                GameBoardValues[x - 1, y - 1] = ch;
                 return true;
             }
 

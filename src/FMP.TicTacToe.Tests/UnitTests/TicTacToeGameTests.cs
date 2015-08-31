@@ -105,19 +105,17 @@ namespace FMP.TicTacToe.Tests.UnitTests
                 .Returns(x)
                 .Returns(y);
 
-            _gameBoardMock.Setup(m => m.Play(It.IsAny<Player>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
-
-            _game.CurrentPlayer = new Player('X');
-
+            _gameBoardMock.Setup(m => m.Play(It.IsAny<char>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+            
             _game.CurrentPlayerPlay();
 
-            _gameBoardMock.Verify(m => m.Play(_game.CurrentPlayer, x, y), Times.Once);
+            _gameBoardMock.Verify(m => m.Play(_game.CurrentPlayer.PlayCharacter, x, y), Times.Once);
         }
 
         [Test]
         public void CurrentPlayerPlay_KeepsTryingUntilPlayerMakesASuccessfulMove()
         {
-            _gameBoardMock.SetupSequence(m => m.Play(It.IsAny<Player>(), It.IsAny<int>(), It.IsAny<int>()))
+            _gameBoardMock.SetupSequence(m => m.Play(It.IsAny<char>(), It.IsAny<int>(), It.IsAny<int>()))
                .Returns(false)
                .Returns(false)
                .Returns(false)
@@ -126,7 +124,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
 
             _game.CurrentPlayerPlay();
 
-            _gameBoardMock.Verify(m => m.Play(_game.CurrentPlayer, It.IsAny<int>(), It.IsAny<int>()), Times.Exactly(5));
+            _gameBoardMock.Verify(m => m.Play(_game.CurrentPlayer.PlayCharacter, It.IsAny<int>(), It.IsAny<int>()), Times.Exactly(5));
         }
 
         [TestCase(true)]

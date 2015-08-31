@@ -46,7 +46,7 @@ namespace FMP.TicTacToe
 
         public void CurrentPlayerPlay()
         {
-            while(! _gameBoard.Play(CurrentPlayer, _randomNumberGenerator.Generate(), _randomNumberGenerator.Generate()));
+            while(! _gameBoard.Play(CurrentPlayer.PlayCharacter, _randomNumberGenerator.Generate(), _randomNumberGenerator.Generate()));
         }
 
         // Violating SRP by Checking for game over and setting up winner in the same method
