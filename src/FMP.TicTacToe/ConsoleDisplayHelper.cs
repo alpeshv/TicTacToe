@@ -3,7 +3,7 @@ using FMP.TicTacToe.Abstract;
 
 namespace FMP.TicTacToe
 {
-    public class DisplayHelper:IDisplayHelper
+    public class ConsoleDisplayHelper : IDisplayHelper
     {
         public void Display(string str)
         {

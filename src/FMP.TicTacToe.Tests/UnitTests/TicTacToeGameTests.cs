@@ -19,7 +19,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
             _gameBoardMock = new Mock<IGameBoard>();
             _displayHelperMock = new Mock<IDisplayHelper>();
             _randomNumberGenerator = new Mock<IRandomNumberGenerator>();
-            
+
             _game = new TicTacToeGame(_gameBoardMock.Object, _displayHelperMock.Object, _randomNumberGenerator.Object);
         }
 
@@ -64,7 +64,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
             Assert.That(_game.PlayerX, Is.Not.Null);
             Assert.That(_game.PlayerX.PlayCharacter, Is.EqualTo('X'));
         }
-        
+
         [Test]
         public void SetCurrentPlayer_WhenCurrentPlayerIsNotSet_SetsPlayerOAsCurrentUser()
         {
@@ -105,6 +105,8 @@ namespace FMP.TicTacToe.Tests.UnitTests
                 .Returns(x)
                 .Returns(y);
 
+            _gameBoardMock.Setup(m => m.Play(It.IsAny<Player>(), It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+
             _game.CurrentPlayer = new Player('X');
 
             _game.CurrentPlayerPlay();
@@ -112,15 +114,19 @@ namespace FMP.TicTacToe.Tests.UnitTests
             _gameBoardMock.Verify(m => m.Play(_game.CurrentPlayer, x, y), Times.Once);
         }
 
-        [TestCase(true)]
-        [TestCase(false)]
-        public void CurrentPlayerPlay_ReturnsResultFromGameBoard(bool expectedResult)
+        [Test]
+        public void CurrentPlayerPlay_KeepsTryingUntilPlayerMakesASuccessfulMove()
         {
-            _gameBoardMock.Setup(m => m.Play(It.IsAny<Player>(), It.IsAny<int>(), It.IsAny<int>())).Returns(expectedResult);
-            
-            var result = _game.CurrentPlayerPlay();
-            
-            Assert.That(result, Is.EqualTo(expectedResult));
+            _gameBoardMock.SetupSequence(m => m.Play(It.IsAny<Player>(), It.IsAny<int>(), It.IsAny<int>()))
+               .Returns(false)
+               .Returns(false)
+               .Returns(false)
+               .Returns(false)
+               .Returns(true);
+
+            _game.CurrentPlayerPlay();
+
+            _gameBoardMock.Verify(m => m.Play(_game.CurrentPlayer, It.IsAny<int>(), It.IsAny<int>()), Times.Exactly(5));
         }
 
         [TestCase(true)]
@@ -131,7 +137,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
             _gameBoardMock.Setup(m => m.IsGameOver(out hasAPlayerWon)).Returns(expectedResult);
             var result = _game.IsGameOver();
 
-            _gameBoardMock.Verify(m=>m.IsGameOver(out hasAPlayerWon), Times.Once);
+            _gameBoardMock.Verify(m => m.IsGameOver(out hasAPlayerWon), Times.Once);
             Assert.That(result, Is.EqualTo(expectedResult));
         }
 
@@ -142,7 +148,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
             _game.CurrentPlayer = new Player(playerCharacter);
             var hasAPlayerWon = true;
             _gameBoardMock.Setup(m => m.IsGameOver(out hasAPlayerWon)).Returns(true);
-            
+
             _game.IsGameOver();
 
             Assert.That(_game.Winner, Is.Not.Null);
@@ -156,7 +162,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
 
             _game.DisplayResult();
 
-            _displayHelperMock.Verify(m=>m.Display("Game Over. No Winner."), Times.Once);
+            _displayHelperMock.Verify(m => m.Display("Game Over. No Winner."), Times.Once);
         }
 
         [Test]

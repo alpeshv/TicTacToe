@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FMP.TicTacToe.Abstract;
+﻿using FMP.TicTacToe.Abstract;
 
 namespace FMP.TicTacToe
 {
@@ -28,7 +23,7 @@ namespace FMP.TicTacToe
                 _pauseHelper.PauseFor(1000);
                 _ticTacToeGame.SetCurrentPlayer();
                 
-                while(!_ticTacToeGame.CurrentPlayerPlay()){};
+                _ticTacToeGame.CurrentPlayerPlay();
                 _ticTacToeGame.DisplayGameBoard();
                 
             } while (!_ticTacToeGame.IsGameOver());

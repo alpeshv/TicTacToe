@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FMP.TicTacToe.Abstract;
 
 namespace FMP.TicTacToe
@@ -48,9 +44,9 @@ namespace FMP.TicTacToe
                 CurrentPlayer = PlayerX;
         }
 
-        public bool CurrentPlayerPlay()
+        public void CurrentPlayerPlay()
         {
-            return _gameBoard.Play(CurrentPlayer, _randomNumberGenerator.Generate(), _randomNumberGenerator.Generate());
+            while(! _gameBoard.Play(CurrentPlayer, _randomNumberGenerator.Generate(), _randomNumberGenerator.Generate()));
         }
 
         // Violating SRP by Checking for game over and setting up winner in the same method

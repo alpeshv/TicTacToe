@@ -11,7 +11,7 @@ namespace FMP.TicTacToe.Abstract
         void Reset();
         void DisplayGameBoard();
         void SetCurrentPlayer();
-        bool CurrentPlayerPlay();
+        void CurrentPlayerPlay();
         bool IsGameOver();
         void DisplayResult();
     }

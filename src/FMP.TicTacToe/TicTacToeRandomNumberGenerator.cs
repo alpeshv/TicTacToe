@@ -3,7 +3,7 @@ using FMP.TicTacToe.Abstract;
 
 namespace FMP.TicTacToe
 {
-    public class RandomNumberGenerator : IRandomNumberGenerator
+    public class TicTacToeRandomNumberGenerator : IRandomNumberGenerator
     {
         public int Generate()
         {
