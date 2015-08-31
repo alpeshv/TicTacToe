@@ -195,7 +195,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
         }
 
         [Test]
-        public void IsGameOver_When3SameCharactersAreInTheForwardDiagonal_ReturnsTrueAndSetsWinnerFlag()
+        public void IsGameOver_When3SameCharactersAreInTheBackwardDiagonal_ReturnsTrueAndSetsWinnerFlag()
         {
             _boardArray[0, 0] = 'X';
             _boardArray[1, 1] = 'X';
@@ -210,7 +210,7 @@ namespace FMP.TicTacToe.Tests.UnitTests
         }
 
         [Test]
-        public void IsGameOver_When3SameCharactersAreInTheBackwardDiagonal_ReturnsTrueAndSetsWinnerFlag()
+        public void IsGameOver_When3SameCharactersAreInTheForwardDiagonal_ReturnsTrueAndSetsWinnerFlag()
         {
             _boardArray[2, 0] = 'O';
             _boardArray[1, 1] = 'O';
