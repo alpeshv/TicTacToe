@@ -53,6 +53,27 @@ namespace FMP.TicTacToe.Tests.UnitTests
         }
 
         [Test]
+        public void Reset_ResetsAllGameBoardValues()
+        {
+            _boardArray[0, 0] = 'O';
+            _boardArray[0, 1] = 'O';
+            _boardArray[0, 2] = 'X';
+
+            _boardArray[1, 0] = 'X';
+            _boardArray[1, 1] = 'O';
+            _boardArray[1, 2] = 'O';
+
+            _boardArray[2, 0] = 'O';
+            _boardArray[2, 1] = 'X';
+            _boardArray[2, 2] = 'X';
+
+            var gameBoard = new GameBoard(_boardArray);
+            gameBoard.Reset();
+
+            AssertGameBoardStatus(gameBoard, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+        }
+
+        [Test]
         public void Play_ByPlayerOFor22When22IsEmpty_PlacesSymbolOOnGameBoadrdAt22()
         {
             var gameBoard = new GameBoard(_boardArray);
